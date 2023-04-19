@@ -35,7 +35,7 @@ final class SignViewModel {
             .sink { [weak self] event in
                 switch event {
                 case .viewApear:
-                    self?.signInValidate()
+                    self?.signInCheck()
                     self?.signUpCheck()
                 case .idTextChanged(let id):
                     self?.userID.send(id)
@@ -53,7 +53,7 @@ final class SignViewModel {
         return output.eraseToAnyPublisher()
     }
     
-    private func signInValidate() {
+    private func signInCheck() {
         output.send(.toggleButton(isEnable: false))
         userID.combineLatest(userPassword) { id, password in
             if id.count >= 5 && password.count >= 5 {
