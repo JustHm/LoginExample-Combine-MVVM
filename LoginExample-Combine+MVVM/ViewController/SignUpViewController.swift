@@ -23,7 +23,7 @@ final class SignUpViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        input.send(.viewApear)
+        input.send(.viewApear(type: .signUp))
     }
     
     private func bind() {

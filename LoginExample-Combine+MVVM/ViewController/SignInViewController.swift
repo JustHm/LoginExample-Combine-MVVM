@@ -22,7 +22,7 @@ final class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        input.send(.viewApear)
+        input.send(.viewApear(type: .signIn))
     }
     
     private func bind() {

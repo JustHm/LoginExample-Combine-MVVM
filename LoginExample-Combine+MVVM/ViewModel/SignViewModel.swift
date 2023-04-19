@@ -9,8 +9,11 @@ import Foundation
 import Combine
 
 final class SignViewModel {
+    enum SignType {
+        case signIn, signUp
+    }
     enum Input {
-        case viewApear
+        case viewApear(type: SignType)
         case idTextChanged(id: String)
         case passwordTextChanged(password: String)
         case againTextChanged(again: String)
@@ -34,9 +37,12 @@ final class SignViewModel {
         input.receive(on: DispatchQueue.main)
             .sink { [weak self] event in
                 switch event {
-                case .viewApear:
-                    self?.signInCheck()
-                    self?.signUpCheck()
+                case .viewApear(let type):
+                    if type == .signIn {
+                        self?.signInCheck()
+                    } else {
+                        self?.signUpCheck()
+                    }
                 case .idTextChanged(let id):
                     self?.userID.send(id)
                 case .passwordTextChanged(let password):
